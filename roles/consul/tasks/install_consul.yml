@@ -1,12 +1,7 @@
 ---
-- file:
-    path: /usr/local/bin/consul
-    state: directory
-    mode: 0755
-
 - unarchive:
     src: https://releases.hashicorp.com/consul/1.7.2/consul_1.7.2_linux_amd64.zip
-    dest: /usr/local/bin/consul
+    dest: /usr/local/bin/
     remote_src: yes
 
 - stat:
