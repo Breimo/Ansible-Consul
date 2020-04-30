@@ -5,5 +5,5 @@
   run_once: true
 
 - set_fact:
-  consul_encrypt: "{{ consul_encrypt.stdout }}"
+    consul_encrypt: "{{ consul_encrypt.stdout }}"
   run_once: true
