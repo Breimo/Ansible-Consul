@@ -1,0 +1,24 @@
+{
+    "bootstrap_expect": 3,
+    "client_addr": "0.0.0.0",
+    "datacenter": "{{ datacenter }}",
+    "data_dir": "{{ consul_data }}",
+    "domain": "{{ consul_domain }}",
+    "enable_script_checks": true,
+    "dns_config": {
+        "enable_truncate": true,
+        "only_passing": true
+    },
+    "enable_syslog": true,
+    "encrypt": "{{ consul_encrypt }}",
+    "leave_on_terminate": true,
+    "log_level": "INFO",
+    "rejoin_after_leave": true,
+    "server": true,
+    "start_join": [
+        "{{ansible_all_ipv4_addresses[0]}}",
+        "{{ansible_all_ipv4_addresses[1]}}",
+        "{{ansible_all_ipv4_addresses[2]}}"
+    ],
+    "ui": true
+}
