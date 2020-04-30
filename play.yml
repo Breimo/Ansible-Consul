@@ -1,4 +1,5 @@
 ---
 - hosts: webservers
+  become: true
   roles:
       - consul
