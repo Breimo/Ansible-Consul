@@ -10,21 +10,21 @@
     cmd: rm -f consul.zip
 
 - stat:
-    path: /etc/consul.d/scripts
+    path: {{ consul_scripts }}
     register: scripts_stat
 
 - file:
-    path: /etc/consul.d/scripts
+    path: {{ consul_scripts }}
     state: directory
     mode: 0755
   when: not scripts_stat.exists
 
 - stat:
-    path: /var/consul
+    path: {{ consul_data }}
     register: var_stat
 
 - file:
-    path: /var/consul
+    path: {{ consul_data }}
     state: directory
     mode: 0755
   when: not var_stat.exists

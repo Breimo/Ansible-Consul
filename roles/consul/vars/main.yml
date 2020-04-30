@@ -1,2 +1,7 @@
 ---
 # vars file for consul
+
+consul_datacenter: cardia
+consul_data: /var/consul
+consul_scripts: /etc/consul.d/scripts
+consul_domain: consul

@@ -1,3 +1,10 @@
 ---
 - name: Install consul and create directories
-  import_tasks: install_consul.yml
+  block:
+    - debug:
+        msg: "Installing consul and creating directories"
+    - import_tasks: install_consul.yml
+  rescue:
+    - debug:
+        msg: "Installation failed. This could be due to consul's site being down, or insufficient folder access."
+tags: install
