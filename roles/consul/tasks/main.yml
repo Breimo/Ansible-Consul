@@ -31,11 +31,11 @@
   tags: config
 
 - name: Create consul service
-block:
-  - debug:
-      msg: "Creating consul service"
-  - import_tasks: create_service.yml
-rescue:
-  - debug:
-      msg: "Service creation failed. Check if the path /etc/systemd/system/ is writeable"
-tags: service
+  block:
+    - debug:
+        msg: "Creating consul service"
+    - import_tasks: create_service.yml
+  rescue:
+    - debug:
+        msg: "Service creation failed. Check if the path /etc/systemd/system/ is writeable"
+  tags: service

@@ -3,7 +3,7 @@
     path: /etc/systemd/system/consul.service
   register: consul_service
 
-- copy
+- copy:
     src: consul.service
     dest: /etc/systemd/system/consul.service
     owner: root
