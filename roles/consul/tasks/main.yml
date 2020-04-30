@@ -8,3 +8,13 @@
     - debug:
         msg: "Installation failed. This could be due to consul's site being down, or insufficient folder access."
   tags: install
+
+- name: Generate consul secret
+  block:
+    - debug:
+        msg: "Generating consul secret"
+    - import_tasks: generate_key.yml
+  rescue:
+    - debug:
+        msg: "Key generation failed. Check if consul is available in path /usr/local/bin/"
+  tags: keygen

@@ -1,0 +1,11 @@
+---
+- shell: consul keygen
+  register: consul_encrypt
+  delegate_to: 127.0.0.1
+  run_once: true
+
+- set_fact:
+  consul_encrypt={{ consul_encrypt.out }}
+
+- debug: var=consul_encrypt
+  run_once: true
