@@ -1,0 +1,3 @@
+---
+- name: Install consul and create directories
+  import_tasks: install_consul.yml

@@ -1,0 +1,30 @@
+---
+- get_url:
+    url: https://releases.hashicorp.com/consul/1.7.2/consul_1.7.2_linux_amd64.zip
+    dest: /usr/local/bin/consul.zip
+
+- command:
+    cmd: unzip consul.zip
+
+- command:
+    cmd: rm -f consul.zip
+
+- stat:
+    path: /etc/consul.d/scripts
+    register: scripts_stat
+
+- file:
+    path: /etc/consul.d/scripts
+    state: directory
+    mode: 0755
+  when: not scripts_stat.exists
+
+- stat:
+    path: /var/consul
+    register: var_stat
+
+- file:
+    path: /var/consul
+    state: directory
+    mode: 0755
+  when: not var_stat.exists
