@@ -5,7 +5,5 @@
   run_once: true
 
 - set_fact:
-  consul_encrypt={{ consul_encrypt.out }}
-
-- debug: var=consul_encrypt
+  consul_encrypt: "{{ consul_encrypt.stdout }}"
   run_once: true
