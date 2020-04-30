@@ -19,3 +19,13 @@
     - debug:
         msg: "Key generation failed. Check if consul is available in path /usr/local/bin/"
   tags: keygen
+
+- name: Generate consul config
+  block:
+    - debug:
+        msg: "Generating consul config"
+    - import_tasks: generate_config.yml
+  rescue:
+    - debug:
+        msg: "Config generation failed. Check if the path /etc/consul.d/ is writeable"
+  tags: config
