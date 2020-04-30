@@ -1,0 +1,16 @@
+---
+- stat:
+    path: /etc/systemd/system/consul.service
+  register: consul_service
+
+- copy
+    src: consul.service
+    dest: /etc/systemd/system/consul.service
+    owner: root
+    group: root
+    mode: 0644
+  when: not consul_service.stat.exists
+
+- systemd:
+    daemon_reload: yes
+  when: not consul_service.stat.exists
