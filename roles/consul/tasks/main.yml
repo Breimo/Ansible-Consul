@@ -39,3 +39,13 @@
     - debug:
         msg: "Service creation failed. Check if the path /etc/systemd/system/ is writeable"
   tags: service
+
+- name: Start consul service and verify running instances.
+ block:
+   - debug:
+       msg: "Starting consul"
+   - import_tasks: start_service.yml
+ rescue:
+   - debug:
+       msg: "Consul was unable to start."
+ tags: service
