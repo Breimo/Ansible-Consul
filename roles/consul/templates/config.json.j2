@@ -1,24 +1,24 @@
 {
     "bootstrap_expect": 3,
     "client_addr": "0.0.0.0",
-    "datacenter": "'{{ consul_datacenter }}'",
-    "data_dir": "'{{ consul_data }}'",
-    "domain": "'{{ consul_domain }}'",
+    "datacenter": "{{ consul_datacenter }}",
+    "data_dir": "{{ consul_data }}",
+    "domain": "{{ consul_domain }}",
     "enable_script_checks": true,
     "dns_config": {
         "enable_truncate": true,
         "only_passing": true
     },
     "enable_syslog": true,
-    "encrypt": "'{{ consul_encrypt }}'",
+    "encrypt": "{{ consul_encrypt }}",
     "leave_on_terminate": true,
     "log_level": "INFO",
     "rejoin_after_leave": true,
     "server": true,
     "start_join": [
-        "'{{ansible_all_ipv4_addresses[0]}}'",
-        "'{{ansible_all_ipv4_addresses[1]}}'",
-        "'{{ansible_all_ipv4_addresses[2]}}'"
+        "{{ hostvars[groups['webservers'][0]]['ansible_default_ipv4']['address'] }}",
+        "{{ hostvars[groups['webservers'][1]]['ansible_default_ipv4']['address'] }}",
+        "{{ hostvars[groups['webservers'][2]]['ansible_default_ipv4']['address'] }}"
     ],
     "ui": true
 }

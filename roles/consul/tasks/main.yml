@@ -41,11 +41,11 @@
   tags: service
 
 - name: Start consul service and verify running instances.
- block:
+  block:
    - debug:
        msg: "Starting consul"
    - import_tasks: start_service.yml
- rescue:
+  rescue:
    - debug:
        msg: "Consul was unable to start."
- tags: service
+  tags: service
