@@ -17,7 +17,6 @@
 
 - name: Consul - Create service
   import_tasks: create_service.yml
-  rescue:
   tags:
   - service
 
