@@ -1,5 +1,5 @@
 {
-    "bootstrap_expect": 3,
+    "bootstrap": false,
     "client_addr": "0.0.0.0",
     "datacenter": "{{ consul_datacenter }}",
     "data_dir": "{{ consul_data }}",
@@ -15,10 +15,13 @@
     "log_level": "INFO",
     "rejoin_after_leave": true,
     "server": true,
+    "connect": {
+        "enabled": true
+    },    
     "start_join": [
         "{{ hostvars[groups['webservers'][0]]['ansible_default_ipv4']['address'] }}",
         "{{ hostvars[groups['webservers'][1]]['ansible_default_ipv4']['address'] }}",
         "{{ hostvars[groups['webservers'][2]]['ansible_default_ipv4']['address'] }}"
     ],
-    "ui": true
+    "ui": {{ consul_ui|lower }}
 }

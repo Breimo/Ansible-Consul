@@ -1,51 +1,27 @@
 ---
-- name: Install consul and create directories
-  block:
-    - debug:
-        msg: "Installing consul and creating directories"
-    - import_tasks: install_consul.yml
-  rescue:
-    - debug:
-        msg: "Installation failed. This could be due to consul's site being down, or insufficient folder access."
-  tags: install
+- name: Host - Install consul and create directories
+  - import_tasks: install_consul.yml
+  tags:
+  - install
 
-- name: Generate consul secret
-  block:
-    - debug:
-        msg: "Generating consul secret"
-    - import_tasks: generate_key.yml
-    - debug: var=consul_encrypt
-  rescue:
-    - debug:
-        msg: "Key generation failed. Check if consul is available in path /usr/local/bin/"
-  tags: keygen
+- name: Consul - Generate secret
+  import_tasks: generate_key.yml
+  tags:
+  - keygen
+  - config
 
-- name: Generate consul config
-  block:
-    - debug:
-        msg: "Generating consul config"
-    - import_tasks: generate_config.yml
-  rescue:
-    - debug:
-        msg: "Config generation failed. Check if the path /etc/consul.d/ is writeable"
-  tags: config
+- name: Consul - Generate config
+  import_tasks: generate_config.yml
+  tags:
+  - config
 
-- name: Create consul service
-  block:
-    - debug:
-        msg: "Creating consul service"
-    - import_tasks: create_service.yml
+- name: Consul - Create service
+  import_tasks: create_service.yml
   rescue:
-    - debug:
-        msg: "Service creation failed. Check if the path /etc/systemd/system/ is writeable"
-  tags: service
+  tags:
+  - service
 
-- name: Start consul service and verify running instances.
-  block:
-   - debug:
-       msg: "Starting consul"
-   - import_tasks: start_service.yml
-  rescue:
-   - debug:
-       msg: "Consul was unable to start."
-  tags: service
+- name: Consul - Start and verify running instances.
+  import_tasks: start_service.yml
+  tags:
+  - service

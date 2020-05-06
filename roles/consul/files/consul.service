@@ -1,3 +1,4 @@
+### Obsolete - Replaced with templates/consul.service.j2
 [Unit]
 Description=Consul Startup process
 After=network.target

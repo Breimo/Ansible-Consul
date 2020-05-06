@@ -1,5 +1,5 @@
 ---
-- shell: consul keygen
+- shell: /usr/local/bin/consul keygen
   register: consul_encrypt
   delegate_to: "{{ groups['webservers'][0] }}"
   run_once: true
@@ -7,3 +7,6 @@
 - set_fact:
     consul_encrypt: "{{ consul_encrypt.stdout }}"
   run_once: true
+
+- debug:
+    var: consul_encrypt
