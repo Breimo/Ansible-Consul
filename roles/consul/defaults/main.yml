@@ -1,2 +1,9 @@
 ---
-# defaults file for consul
+### defaults file for consul
+
+## Consul cluster variables (see config.json.j2)
+consul_node1: node2
+consul_node2: node3
+
+## Consul UI enabled
+consul_ui: true
