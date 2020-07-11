@@ -1,12 +1,30 @@
 ---
-- shell: /usr/local/bin/consul keygen
-  register: consul_encrypt
+
+- name: Checking for existing values in the config.json file
+  shell: grep -Po '\"encrypt\"[:]\s\K\"(.*)\"' /etc/consul.d/config.json | tr -d '"'
+  register: consul_encrypt_grep
   delegate_to: "{{ groups['webservers'][0] }}"
   run_once: true
 
-- set_fact:
-    consul_encrypt: "{{ consul_encrypt.stdout }}"
+- name: Generating new encryption key
+  shell: /usr/local/bin/consul keygen
+  register: consul_encrypt
+  delegate_to: "{{ groups['webservers'][0] }}"
   run_once: true
+  when: consul_encrypt_grep.stdout == ""
 
-- debug:
-    var: consul_encrypt
+- name: Defining variable for encryption key
+  set_fact:
+   consul_encrypt: "{{ consul_encrypt.stdout }}"
+  run_once: true
+  when: consul_encrypt_grep.stdout == ""
+
+- name: Setting existing value as encryption variable
+  set_fact:
+   consul_encrypt: "{{ consul_encrypt_grep.stdout }}"
+  when: consul_encrypt_grep.stdout != ""
+
+### For debug purposess
+#- name: Defined encryption key
+#  debug:
+#    var: consul_encrypt
