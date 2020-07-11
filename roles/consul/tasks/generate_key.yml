@@ -24,7 +24,7 @@
    consul_encrypt: "{{ consul_encrypt_grep.stdout }}"
   when: consul_encrypt_grep
 
-### For debug purposess
+### For debug purposes
 #- name: Defined encryption key
 #  debug:
 #    var: consul_encrypt

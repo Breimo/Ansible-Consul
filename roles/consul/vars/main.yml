@@ -1,12 +1,12 @@
 ---
-### vars file for consul
+# vars file for consul
 
 ## Consul release
-consul_release: 1.7.3
+consul_release: 1.8.0
 
 ## General consul variables 
-consul_datacenter: cardia
+consul_datacenter: development
 consul_data: /var/consul
 consul_scripts: /etc/consul.d/scripts
-consul_domain: consul
+consul_domain: breimo
 consul_bootstrap: 2

@@ -1,25 +1,31 @@
 ---
-- unarchive:
+
+- name: Fetching Consul version {{ consul_release }}
+  unarchive:
     src: https://releases.hashicorp.com/consul/{{ consul_release }}/consul_{{ consul_release }}_linux_amd64.zip
     dest: /usr/local/bin/
     remote_src: yes
 
-- stat:
+- name: Creating stat for Consul's script directory
+  stat:
     path: "{{ consul_scripts }}"
   register: scripts_dir
 
-- file:
+- name: Creating script directory
+  file:
     path: "{{ consul_scripts }}"
-    state: directory
-    mode: 0755
+    state: "directory"
+    mode: "0755"
   when: not scripts_dir.stat.exists
 
-- stat:
+- name: Creating stat for Consul's data directory
+  stat:
     path: "{{ consul_data }}"
   register: var_dir
 
-- file:
+- name: Creating data directory
+  file:
     path: "{{ consul_data }}"
-    state: directory
-    mode: 0755
+    state: "directory"
+    mode: "0755"
   when: not var_dir.stat.exists
