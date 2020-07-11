@@ -11,18 +11,18 @@
   register: consul_encrypt
   delegate_to: "{{ groups['webservers'][0] }}"
   run_once: true
-  when: not consul_encrypt_grep
+  when: consul_encrypt_grep.stdout | length == 0
 
 - name: Defining variable for encryption key
   set_fact:
    consul_encrypt: "{{ consul_encrypt.stdout }}"
   run_once: true
-  when: not consul_encrypt_grep
+  when: consul_encrypt_grep.stdout | length == 0
 
 - name: Setting existing value as encryption variable
   set_fact:
    consul_encrypt: "{{ consul_encrypt_grep.stdout }}"
-  when: consul_encrypt_grep
+  when: consul_encrypt_grep.stdout | length > 0
 
 ### For debug purposes
 #- name: Defined encryption key
