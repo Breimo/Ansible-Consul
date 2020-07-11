@@ -1,7 +1,9 @@
 ---
-- template:
+
+- name: Generating config.json file
+  template:
    src: config.json.j2
    dest: /etc/consul.d/config.json
    owner: root
    group: root
-   mode: 0744
+   mode: "0744"

@@ -1,13 +1,6 @@
 ---
-- systemd:
-    state: started
-    name: consul.service
-  when: not consul_service.stat.exists
 
-- systemd:
+- name: Starting/restarting the Consul service
+  systemd:
     state: restarted
     name: consul.service
-  when: consul_service.stat.exists
-
-- shell:
-    cmd: /usr/local/bin/consul members

@@ -1,16 +1,20 @@
 ---
-- stat:
+
+- name: Checking if the service exists
+  stat:
     path: /etc/systemd/system/consul.service
   register: consul_service
 
-- template:
+- name: Creating service from template
+  template:
     src: consul.service.j2
     dest: /etc/systemd/system/consul.service
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   when: not consul_service.stat.exists
 
-- systemd:
+- name: Reloading the systemd daemon
+  systemd:
     daemon_reload: yes
   when: not consul_service.stat.exists
