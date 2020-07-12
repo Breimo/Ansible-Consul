@@ -1,12 +1,24 @@
 ---
-# vars file for consul
+# vars file for Consul
 
 ## Consul release
 consul_release: 1.8.0
 
-## General consul variables 
+## General Consul variables 
 consul_datacenter: development
 consul_data: /var/consul
 consul_scripts: /etc/consul.d/scripts
 consul_domain: breimo
-consul_bootstrap: 2
+consul_bootstrap: 3
+
+## Consul ports
+consul_port_server: 8300
+consul_port_serf_lan: 8301
+consul_port_serf_wan: 8302
+consul_port_http: 8500
+consul_port_https: -1
+consul_port_grpc: -1
+consul_port_dns: 8600
+
+
+

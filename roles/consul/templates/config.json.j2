@@ -17,7 +17,16 @@
     "server": true,
     "connect": {
         "enabled": true
-    },    
+    },
+    "ports": {
+        "server": {{ consul_port_server }},
+        "serf_lan": {{ consul_port_serf_lan }},
+        "serf_wan": {{ consul_port_serf_wan }},
+        "http": {{ consul_port_http }},
+        "https": {{ consul_port_https }},
+        "grpc": {{ consul_port_grpc }},
+        "dns": {{ consul_port_dns }}
+    },
     "start_join": [
         "{{ consul_node1 }}",
         "{{ consul_node2 }}"

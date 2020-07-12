@@ -1,6 +1,6 @@
 ---
 
-- name: Checking for existing values in the config.json file
+- name: Checking for existing encryption values in config.json
   shell: grep -Po '\"encrypt\"[:]\s\K\"(.*)\"' /etc/consul.d/config.json | tr -d '"'
   register: consul_encrypt_grep
   delegate_to: "{{ groups['webservers'][0] }}"

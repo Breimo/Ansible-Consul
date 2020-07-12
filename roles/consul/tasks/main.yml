@@ -1,6 +1,6 @@
 ---
 
-- name: Host - Install consul and create directories
+- name: Host - Install Consul and create directories
   import_tasks: install_consul.yml
   tags:
   - install
